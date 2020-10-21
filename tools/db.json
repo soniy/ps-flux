@@ -1,98 +1,42 @@
 {
   "courses": [
     {
-      "id": 1,
-      "title": "Securing React Apps with Auth1",
-      "slug": "react-auth0-authentication-security",
-      "authorId": 1,
-      "category": "JavaScript"
-    },
-    {
-      "id": 2,
-      "title": "React: The Big Picture",
-      "slug": "react-big-picture",
-      "authorId": 1,
-      "category": "JavaScript"
-    },
-    {
-      "id": 3,
-      "title": "Creating Reusable React Components",
-      "slug": "react-creating-reusable-components",
-      "authorId": 1,
-      "category": "JavaScript"
-    },
-    {
-      "id": 4,
-      "title": "Building a JavaScript Development Environment",
-      "slug": "javascript-development-environment",
-      "authorId": 1,
-      "category": "JavaScript"
-    },
-    {
-      "id": 5,
-      "title": "Building Applications with React and Redux",
-      "slug": "react-redux-react-router-es6",
-      "authorId": 1,
-      "category": "JavaScript"
-    },
-    {
-      "id": 6,
-      "title": "Building Applications in React and Flux",
-      "slug": "react-flux-building-applications",
-      "authorId": 1,
-      "category": "JavaScript"
-    },
-    {
-      "id": 7,
-      "title": "Clean Code: Writing Code for Humans",
-      "slug": "writing-clean-code-humans",
-      "authorId": 1,
-      "category": "Software Practices"
-    },
-    {
       "id": 8,
       "title": "Architecting Applications for the Real World",
       "slug": "architecting-applications-dotnet",
-      "authorId": 1,
+      "authorId": 2,
       "category": "Software Architecture"
-    },
-    {
-      "id": 9,
-      "title": "Becoming an Outlier: Reprogramming the Developer Mind",
-      "slug": "career-reboot-for-developer-mind",
-      "authorId": 1,
-      "category": "Career"
     },
     {
       "id": 10,
       "title": "Web Component Fundamentals",
       "slug": "web-components-shadow-dom",
-      "authorId": 1,
+      "authorId": 3,
       "category": "HTML5"
     },
     {
       "id": 11,
-      "slug": "title",
-      "title": "Title",
-      "authorId": 1,
-      "category": "Category2",
-      "createdAt": 1603100565271
+      "slug": "securing-react-apps-with-auth0",
+      "title": "Securing React Apps with Auth0",
+      "authorId": 2,
+      "category": "Category",
+      "createdAt": 1603272394232
     },
     {
       "id": 12,
-      "slug": "title",
-      "title": "Title",
-      "authorId": 2,
-      "category": "adwqe",
-      "createdAt": 1603100587467
+      "slug": "title12",
+      "title": "Title12",
+      "authorId": 1,
+      "category": "JavaScript",
+      "createdAt": 1603272689813
     },
     {
       "id": 13,
-      "slug": "title",
-      "title": "Title",
-      "authorId": 2,
-      "category": "Category3",
-      "createdAt": 1603102041573
+      "slug": "securing-react-apps-with-auth1",
+      "title": "Securing React Apps with Auth1",
+      "authorId": 1,
+      "category": "JavaScript",
+      "createdAt": 1603273077658
     }
   ],
   "authors": [

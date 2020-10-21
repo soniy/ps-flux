@@ -18,7 +18,7 @@ export default function SelectBox(props) {
                     onChange={props.onChange}
                 >
                     {props.dropdownlist.map(item =>
-                        <option key={item.key} value={item.key}>{item.value}</option>
+                        <option key={item.id} defaultValue={item.id} value={item.id}>{item.name}</option>
                     )}
 
                 </select>
@@ -31,7 +31,7 @@ export default function SelectBox(props) {
 SelectBox.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    value: PropTypes.string,
+    value: PropTypes.number,
     onChange: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
     error: PropTypes.string,
@@ -40,6 +40,5 @@ SelectBox.propTypes = {
 
 SelectBox.defaultProps = {
     error: "",
-    value: "",
     dropdownlist: []
 }

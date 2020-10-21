@@ -4,24 +4,11 @@ import TextInput from "./common/TextInput";
 import PropTypes from "prop-types";
 
 function CourseForm(props) {
-    const dropdownlist = [
-        {
-            "key": "",
-            "value": ""
-        },
-        {
-            "key": "1",
-            "value": "Cory House"
-        },
-        {
-            "key": "2",
-            "value": "Scott Allen"
-        }
-    ];
+
     return (
         <form onSubmit={props.onSubmit}>
             <TextInput id="title" label="Title" name="title" value={props.course.title} onChange={props.onChange} error={props.errors.title} />
-            <SelectBox id="author" label="Author" name="authorId" value={props.course.authorId || ""} onChange={props.onChange} dropdownlist={dropdownlist} error={props.errors.authorId} />
+            <SelectBox id="author" label="Author" name="authorId" value={props.course.authorId || 1} onChange={props.onChange} dropdownlist={props.authors} error={props.errors.authorId} />
             <TextInput id="category" label="Category" name="category" value={props.course.category} onChange={props.onChange} error={props.errors.category} />
             <input type="submit" value="Save" className="btn btn-primary" />
         </form>

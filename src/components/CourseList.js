@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function CourseList(props) {
+    function getAuthor(_id) {
+        console.log("APP", _id)
+        return props.authors.find(author => author.id === _id);
+    }
     return (<table className="table">
         <thead>
             <tr>
+                <th>&nbsp;</th>
                 <th>Title</th>
                 <th>Author Id</th>
                 <th>Category</th>
@@ -15,15 +20,30 @@ function CourseList(props) {
             {props.courses.map(course => (
                 <tr key={course.id}>
                     <td>
+                        <button className="btn btn-outline-danger" onClick={() => props.deleteCourse(course.id)}>Delete</button>
+                    </td>
+                    <td>
                         <Link to={'/course/' + course.slug}>{course.title}</Link>
                     </td>
-                    <td>{course.authorId}</td>
+                    <td>{getAuthor(course.authorId).name}</td>
                     <td>{course.category}</td>
                 </tr>))}
         </tbody>
     </table>)
 }
 
-CourseList.propTypes = PropTypes.array.isRequired;
+CourseList.propTypes = {
+    deleteCourse: PropTypes.func.isRequired,
+    courses: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            title: PropTypes.string.isRequired,
+            slug: PropTypes.string.isRequired,
+            authorId: PropTypes.number.isRequired,
+            category: PropTypes.string.isRequired
+        })
+    )
+}
+//PropTypes.array.isRequired;
 CourseList.defaultProps = { courses: [] }
 export default CourseList;

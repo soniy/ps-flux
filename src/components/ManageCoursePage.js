@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import CourseForm from './CourseForm';
-import * as courseApi from '../api/courseApi';
+import courseStore from '../stores/courseStore';
+import authorStore from '../stores/authorStore';
+import * as courseActions from '../actions/courseAction';
+import * as authorActions from '../actions/authorAction';
+
 import { toast } from 'react-toastify';
+
 
 const ManageCoursePage = props => {
     const [errors, setErrors] = useState({});
+    const [courses, setCourses] = useState(courseStore.getCourses());
+    const [authors, setAuthors] = useState(authorStore.getAuthors());
     const [course, setCourse] = useState({
         id: null,
         slug: "",
@@ -13,11 +20,39 @@ const ManageCoursePage = props => {
         category: ""
     })
 
-    useEffect(() => {
-        const slug = props.match.params.slug;
-        courseApi.getCourseBySlug(slug).then(_course => setCourse(_course));
-    }, [props.match.params.slug])
 
+    useEffect(() => {
+        authorStore.addChangeListener(onAuthorsChange);
+        if (authors.length === 0) {
+            authorActions.loadAuthors();
+        } else {
+            setAuthors(authorStore.getAuthors());
+        }
+    }, [authors.length])
+
+    function onAuthorsChange() {
+        setAuthors(authorStore.getAuthors());
+    }
+
+    useEffect(() => {
+        courseStore.addChangeListener(onChange);
+        const slug = props.match.params.slug;
+        if (courses.length === 0) {
+            courseActions.loadCourses();
+        } else if (slug) {
+            console.log(courseStore.getCourseBySlug(slug));
+            if (courseStore.getCourseBySlug(slug) === undefined) {
+                props.history.push("/404");
+            } else {
+                setCourse(courseStore.getCourseBySlug(slug));
+            }
+        }
+        return () => courseStore.removeChangeListener(onChange);
+    }, [courses.length, props.history, props.match.params.slug])
+
+    function onChange() {
+        setCourses(courseStore.getCourses());
+    }
     function handleChange({ target }) {
         const updatedCourse = { ...course, [target.name]: target.value };
         setCourse(updatedCourse);
@@ -35,16 +70,16 @@ const ManageCoursePage = props => {
     function handleSubmit(event) {
         event.preventDefault();
         if (!formIsValid()) return;
-        courseApi.saveCourse(course).then(() => {
+        courseActions.saveCourse(course).then(() => {
             props.history.push("/courses");
-            toast.success('Course Saved.')
+            toast.success('Course Saved.');
         });
     }
 
     return (
         <>
             <h2>Manage Course</h2>
-            <CourseForm course={course} onChange={handleChange} onSubmit={handleSubmit} errors={errors} />
+            <CourseForm course={course} authors={authors} onChange={handleChange} onSubmit={handleSubmit} errors={errors} />
         </>
     );
 }
